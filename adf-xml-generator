@@ -1,0 +1,31 @@
+import datetime
+
+x = datetime.datetime.now()
+
+month = (x.strftime("%m"))
+day = (x.strftime("%d"))
+year = (x.strftime("%Y"))
+hour = (x.strftime("%H"))
+minute = (x.strftime("%M"))
+second = (x.strftime("%s"))
+
+time = (year + month + day + hour + minute + second + "+" + hour + minute)
+
+
+custname = "bob"
+custnum = "13148256315"
+
+
+
+
+f1 = open('xml-template.txt','r')
+f2 = open('xml-lead.xml', 'w')
+checkWords = ("Chevrolet","Blazer","1999", "John Doe", "393-999-3922", "Acura of Bellevue","2000-03-30T15:30:20-08:00")
+repWords = ("MAKE","MODEL","YEAR",custname,custnum,"STORE",time)
+
+for line in f1:
+    for check, rep in zip(checkWords, repWords):
+        line = line.replace(check, rep)
+    f2.write(line)
+f1.close()
+f2.close()
